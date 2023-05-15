@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Feedback Form</title>
+    <meta name="viewport" content="width=device-width,
+      initial-scale=1.0"/> 
+    <link rel="stylesheet" href="./feedback.css" />
+  </head>
+  <body>
+    <form>
+    <div class="container">
+      <h1 class="form-title">Feedback</h1>
+      <form action="#">
+        <div class="main-user-info">
+          <div class="user-input-box">
+            <label for="fullName">First Name</label>
+            <input type="text"
+                    id="fname"
+                    name="fullName"
+                    placeholder="Enter First Name" required/>
+          </div>
+          <div class="user-input-box">
+            <label for="username">Last Name</label>
+            <input type="text"
+                    id="lname"
+                    name="username"
+                    placeholder="Enter Last Name"required/>
+          </div>
+          <div class="user-input-box">
+            <label for="email">Email</label>
+            <input type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter Email"required/>
+          </div>
+          <div class="user-input-box">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="text"
+                    id="gen"
+                    name="phoneNumber"
+                    placeholder="Enter the number"required/>
+          </div>
+          <div class="user-input-box">
+            <label for="password">Feedback</label>
+            <input type="text"
+                    id="feed"
+                    name="password"
+                    placeholder="Enter Feedback"required/>
+          </div>
+          <!-- <div class="user-input-box">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password"
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    placeholder="Confirm Password"/>
+          </div> -->
+        </div>
+      
+        <div class="form-submit-btn">
+         <b><input type="submit" value="Submit" id="b1"></b> 
+        </div>
+      </form>
+    </div>
+</form>
+  </body>
+
+  
+<script>
+    const add=document.querySelector("#b1");
+add.addEventListener("click",async()=>{
+ const n1=String(document.querySelector("#fname").value);
+ const n2=String(document.querySelector("#lname").value);
+ const n3=String(document.querySelector("#email").value);
+ const n4=String(document.querySelector("#gen").value);
+ const n5=String(document.querySelector("#feed").value);
+
+
+ fetch('http://localhost:5000/insert2',{
+            mode:'cors',
+            method:'POST',
+            headers:{
+                'Content-type':'application/json'
+            },
+            body:JSON.stringify({
+                fname:n1,
+                lname:n2,
+                email:n3,
+                gen:n4,
+                feed:n5,
+            })
+        })
+        .then(async(e)=>{
+            alert("LOGIN SUCCESSFULL");
+            
+        })
+        .catch(async()=>{
+            console.log("ERROR");
+            result.innerHTML="ERROR";
+        })
+})
+</script>
+
+</html>
